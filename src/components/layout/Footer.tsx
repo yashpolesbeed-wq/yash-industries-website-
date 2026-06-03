@@ -136,8 +136,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm opacity-60">
+        <div className="border-t border-primary-foreground/20 pt-6 flex justify-center">
+          <p className="text-center text-sm opacity-60">
             Copyright © 2026 All Rights Reserved By Yash Industries Designed By{" "}
             <a
               href="https://webakoof.com/"
