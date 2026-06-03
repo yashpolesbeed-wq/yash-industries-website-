@@ -117,7 +117,7 @@ app.get("/", (_req, res) => {
           <ul>
             <li>Frontend website: <code>http://localhost:8080</code></li>
             <li>API health check: <code>http://localhost:3001/api/health</code></li>
-            <li>Admin login page: <code>http://localhost:8080/admin/login</code></li>
+            <li>Admin login page: <code>http://localhost:8080/yash-industries-my-admin-0.1</code></li>
           </ul>
         </div>
       </body>

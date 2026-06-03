@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { resolveLegacyImage } from "@/data/legacyMedia";
+import { ADMIN_LOGIN_PATH } from "@/lib/routes";
 import {
   clearAdminToken,
   createGalleryItem,
@@ -335,7 +336,7 @@ const AdminPanel = () => {
   });
 
   if (!token) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to={ADMIN_LOGIN_PATH} replace />;
   }
 
   const handleProductFieldChange = (field: keyof ProductFormValues, value: string | string[]) => {

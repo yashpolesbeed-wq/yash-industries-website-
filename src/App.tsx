@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "@/components/ScrollToTop";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { ADMIN_LOGIN_PATH, ADMIN_PANEL_PATH } from "@/lib/routes";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Products from "./pages/Products";
@@ -20,7 +21,9 @@ const queryClient = new QueryClient();
 
 const AppShell = () => {
   const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith("/admin");
+  const isAdminRoute =
+    location.pathname.startsWith(ADMIN_PANEL_PATH) ||
+    location.pathname.startsWith(ADMIN_LOGIN_PATH);
 
   return (
     <>
@@ -34,8 +37,8 @@ const AppShell = () => {
           <Route path="/products/:slug" element={<ProductDetail />} />
           <Route path="/gallery" element={<Infrastructure />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin" element={<AdminPanel />} />
+          <Route path={ADMIN_LOGIN_PATH} element={<AdminLogin />} />
+          <Route path={ADMIN_PANEL_PATH} element={<AdminPanel />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

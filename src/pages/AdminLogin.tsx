@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { getAdminToken, loginAdmin } from "@/lib/productApi";
+import { ADMIN_PANEL_PATH } from "@/lib/routes";
 import adminLogo from "@/assets/logo .png";
 
 const AdminLogin = () => {
@@ -15,7 +16,7 @@ const AdminLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   if (getAdminToken()) {
-    return <Navigate to="/admin" replace />;
+    return <Navigate to={ADMIN_PANEL_PATH} replace />;
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -25,7 +26,7 @@ const AdminLogin = () => {
     try {
       await loginAdmin(username, password);
       toast.success("Admin login successful");
-      navigate("/admin");
+      navigate(ADMIN_PANEL_PATH);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Unable to login");
     } finally {
