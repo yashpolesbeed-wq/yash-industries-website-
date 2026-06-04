@@ -666,23 +666,23 @@ const AdminPanel = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-xl font-heading font-black text-slate-900">
                     <PackagePlus className="h-5 w-5 text-orange-500" />
-                    {selectedProduct ? `Edit ${selectedProduct.name}` : "Add New Product"}
+                    {selectedProduct ? `Save ${selectedProduct.name}` : "Save Product"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleProductSubmit} className="grid gap-4 md:grid-cols-2">
-                <SectionHeading title="Basic Details" description="These details drive the product card, product URL, and product detail page heading." />
+                <SectionHeading title="Basic Details" description="Enter the core product information first. These values drive the product card, product URL, and product detail page heading." />
 
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700">Product Name</label>
                   <Input value={productForm.name} onChange={(e) => handleProductNameChange(e.target.value)} placeholder="Octagonal Pole" required />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-semibold text-slate-700">Slug</label>
+                  <label className="text-sm font-semibold text-slate-700">Product URL Slug</label>
                   <Input value={productForm.slug} onChange={(e) => handleProductSlugChange(e.target.value)} placeholder="octagonal-pole" required />
                 </div>
                 <div className="space-y-2 md:col-span-2">
-                  <label className="text-sm font-semibold text-slate-700">Short Description</label>
+                  <label className="text-sm font-semibold text-slate-700">Short Description for Listings</label>
                   <Textarea
                     value={productForm.shortDescription}
                     onChange={(e) => handleProductFieldChange("shortDescription", e.target.value)}
@@ -692,7 +692,7 @@ const AdminPanel = () => {
                   />
                 </div>
                 <div className="space-y-2 md:col-span-2">
-                  <label className="text-sm font-semibold text-slate-700">Full Description</label>
+                  <label className="text-sm font-semibold text-slate-700">Full Product Description</label>
                   <Textarea
                     value={productForm.description}
                     onChange={(e) => handleProductFieldChange("description", e.target.value)}
@@ -913,13 +913,13 @@ const AdminPanel = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-3 text-xl font-heading font-black text-slate-900">
                     <ImagePlus className="h-5 w-5 text-orange-500" />
-                    {selectedGalleryItem ? "Edit Gallery Image" : "Add Gallery Image"}
+                    {selectedGalleryItem ? "Save Gallery Image" : "Save Gallery Image"}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <form onSubmit={handleSiteGallerySubmit} className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2 md:col-span-2">
-                  <label className="text-sm font-semibold text-slate-700">Gallery Image</label>
+                  <label className="text-sm font-semibold text-slate-700">Gallery Image URL</label>
                   <div className="flex flex-col gap-3 md:flex-row">
                     <Input value={siteGalleryForm.imageUrl} onChange={(e) => handleGalleryFieldChange("imageUrl", e.target.value)} placeholder="Image URL or upload below" />
                     <Button type="button" variant="outline" onClick={() => siteGalleryInputRef.current?.click()}>
@@ -928,7 +928,7 @@ const AdminPanel = () => {
                     </Button>
                   </div>
                   <input ref={siteGalleryInputRef} type="file" accept="image/*,.svg,.avif,.tif,.tiff,.ico" className="hidden" onChange={handleUploadSiteGalleryImage} />
-                  <p className="text-xs text-slate-500">Title, description, and sort order will be created automatically for gallery images.</p>
+                  <p className="text-xs text-slate-500">Title, description, and sort order will be created automatically after you save the image.</p>
                   {siteGalleryForm.imageUrl ? <img src={siteGalleryForm.imageUrl} alt="Gallery preview" className="h-32 w-48 rounded-xl object-cover" /> : null}
                 </div>
 
@@ -936,8 +936,8 @@ const AdminPanel = () => {
                   <Button type="submit" className="bg-slate-950 text-white hover:bg-slate-800" disabled={saveGalleryMutation.isPending}>
                     {selectedGalleryItem ? <Pencil className="mr-2 h-4 w-4" /> : <Plus className="mr-2 h-4 w-4" />}
                     {selectedGalleryItem
-                      ? saveGalleryMutation.isPending ? "Updating..." : "Update Gallery Item"
-                      : saveGalleryMutation.isPending ? "Saving..." : "Create Gallery Item"}
+                      ? saveGalleryMutation.isPending ? "Saving..." : "Save"
+                      : saveGalleryMutation.isPending ? "Saving..." : "Save"}
                   </Button>
                   {selectedGalleryItem ? (
                     <Button type="button" variant="destructive" disabled={deleteGalleryMutation.isPending} onClick={() => deleteGalleryMutation.mutate(selectedGalleryItem.id)}>
